@@ -1,7 +1,8 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import AtivoForm
 from .models import Edificio, Veiculo  # Importe todos os modelos necessários
-from datetime import datetime
+from datetime import date
 
 def adicionar_ativo(request):
     if request.method == 'POST':
@@ -16,9 +17,11 @@ def adicionar_ativo(request):
                     tipo=tipo,
                     loc=form.cleaned_data['loc'],
                     custo_aquisicao=form.cleaned_data['custo_aquisicao'],
-                    data_aquisicao=datetime(year=form.cleaned_data['data_aquisicao'], month=1, day=1)
+                    data_aquisicao=date(year=form.cleaned_data['data_aquisicao'].year, month=form.cleaned_data['data_aquisicao'].month, day=form.cleaned_data['data_aquisicao'].day)
                 )
                 novo_ativo.save()
+                messages.success(request, 'Ativo adicionado com sucesso!')
+                return redirect('adicionar-ativo')  # Redireciona para a mesma página, limpando o formulário
             elif tipo == 'Veiculo':
                 novo_ativo = Veiculo(
                     codigo=form.cleaned_data['codigo'],
@@ -30,7 +33,7 @@ def adicionar_ativo(request):
                 )
                 novo_ativo.save()
             # Redireciona após o POST
-            return redirect('alguma-url-de-sucesso')
+            return redirect('adicionar-ativo')  # Redireciona para a mesma página, limpando o formulário
     else:
         form = AtivoForm()
     return render(request, 'adicionar_ativo.html', {'form': form})

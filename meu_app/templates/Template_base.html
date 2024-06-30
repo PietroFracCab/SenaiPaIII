@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Projeto{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <!-- Outros recursos de CSS ou JavaScript -->
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Cabeçalho Padrão{% endblock %}</h1>
+        <!-- Navegação, links, etc. -->
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- O conteúdo específico da página será inserido aqui -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        <p>Rodapé do Site</p>
+        {% endblock %}
+    </footer>
+
+    <!-- Scripts JavaScript ao final para carregamento mais rápido da página -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

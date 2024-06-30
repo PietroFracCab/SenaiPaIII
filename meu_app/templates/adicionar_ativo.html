@@ -1,14 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Controle de Ativos</title>
-</head>
-<body>
+{% extends 'template_base.html' %}
+
+{% block content %}
     <h1>Controle de Ativos</h1>
+    <!-- Exibir mensagens de sucesso -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message.message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- Sempre exibir o formulário -->
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Adicionar</button>
     </form>
-</body>
-</html>
+{% endblock %}

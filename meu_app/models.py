@@ -9,9 +9,9 @@ class Maquina(models.Model):
     tipo = models.CharField(max_length=100)
     loc =  models.CharField(max_length=100, default="Não especificado")
     custo_aquisicao = models.FloatField()
-    depreciacao_anual = models.FloatField()
-    expectativa_vida_util = models.IntegerField()
-    data_aquisicao = models.IntegerField(default=datetime.now().year)
+    depreciacao_anual = models.FloatField(default=0.0)
+    expectativa_vida_util = models.IntegerField(default=0.0)
+    data_aquisicao = models.DateField()
 
     def __str__(self):
         return self.nome
@@ -22,9 +22,9 @@ class Equipamento(models.Model):
     tipo = models.CharField(max_length=100)
     loc =  models.CharField(max_length=100, default="Não especificado")
     custo_aquisicao = models.FloatField()
-    depreciacao_anual = models.FloatField()
-    expectativa_vida_util = models.IntegerField()
-    data_aquisicao = models.IntegerField(default=datetime.now().year)
+    depreciacao_anual = models.FloatField(default=0.0)
+    expectativa_vida_util = models.IntegerField(default=0.0)
+    data_aquisicao = models.DateField()
 
     def __str__(self):
         return self.nome
@@ -35,9 +35,9 @@ class Edificio(models.Model):
     tipo = models.CharField(max_length=100)
     loc =  models.CharField(max_length=100, default="Não especificado")
     custo_aquisicao = models.FloatField()
-    depreciacao_anual = models.FloatField()
-    expectativa_vida_util = models.IntegerField()
-    data_aquisicao = models.IntegerField(default=datetime.now().year)
+    depreciacao_anual = models.FloatField(default=0.0)
+    expectativa_vida_util = models.IntegerField(default=0.0)
+    data_aquisicao = models.DateField()
 
     def __str__(self):
         return self.nome
@@ -53,9 +53,9 @@ class Veiculo(models.Model):
     tipo = models.CharField(max_length=100)
     loc =  models.CharField(max_length=100, default="Não especificado")
     custo_aquisicao = models.FloatField()
-    depreciacao_anual = models.FloatField()
-    expectativa_vida_util = models.IntegerField()
-    data_aquisicao = models.IntegerField(default=datetime.now().year)
+    depreciacao_anual = models.FloatField(default=0.0)
+    expectativa_vida_util = models.IntegerField(default=0.0)
+    data_aquisicao = models.DateField()
 
     def __str__(self):
         return self.nome
