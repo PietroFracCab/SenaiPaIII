@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import adicionar_ativo
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', adicionar_ativo, name='adicionar-ativo'), # '' vazio direciona para rota padrao http://localhost:8000/
 ]
