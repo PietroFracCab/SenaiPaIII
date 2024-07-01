@@ -3,31 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Meu Projeto{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <!-- Outros recursos de CSS ou JavaScript -->
+    <title>Meu App</title>
+    <!-- Adicione aqui qualquer CSS adicional -->
+    <style>
+        .header-menu {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+        .header-menu a {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>{% block header %}Cabeçalho Padrão{% endblock %}</h1>
-        <!-- Navegação, links, etc. -->
-    </header>
+    <div class="header-menu">
+        <!-- Botão para adicionar ativo -->
+        <a href="{% url 'adicionar-ativo' %}">Adicionar Ativo</a>
+        <!-- Botão para listar Edifícios -->
+        <a href="{% url 'edificio-list' %}">Lista de Edifícios</a>
+        <!-- Botão para listar Equipamento -->
+        <a href="{% url 'equipamento-list' %}">Lista de Equipamentos</a>
+        <!-- Botão para listar Máquinas -->
+        <a href="{% url 'maquina-list' %}">Lista de Máquinas</a>
+        <!-- Botão para listar Veículos -->
+        <a href="{% url 'veiculo-list' %}">Lista de Veículos</a>
+    </div>
 
-    <main>
-        {% block content %}
-        <!-- O conteúdo específico da página será inserido aqui -->
-        {% endblock %}
-    </main>
+    {% block content %}
+    <!-- O conteúdo específico de cada página será inserido aqui -->
+    {% endblock %}
 
-    <footer>
-        {% block footer %}
-        <p>Rodapé do Site</p>
-        {% endblock %}
-    </footer>
-
-    <!-- Scripts JavaScript ao final para carregamento mais rápido da página -->
-    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

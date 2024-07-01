@@ -1,0 +1,13 @@
+{% extends "Template_base.html" %}
+{% block content %}
+<h2>Lista de Máquinas</h2>
+    {% if not Maquina_list %}
+        <p>Nenhuma máquina encontrada.</p>
+    {% else %}
+        <ul>
+            {% for Maquina in Maquina_list %}
+            <p>{{ Maquina.nome }}</p>  <!-- Substitua 'nome' pelo campo que você deseja exibir -->
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

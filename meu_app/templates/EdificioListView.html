@@ -1,0 +1,13 @@
+{% extends "Template_base.html" %}
+{% block content %}
+<h2>Lista de Edifícios</h2>
+    {% if not Edificio_list %}
+        <p>Nenhum edifício encontrado.</p>
+    {% else %}
+        <ul>
+            {% for Edificio in Edificio_list %}
+            <p>{{ Edificio.nome }}</p>  <!-- Substitua 'nome' pelo campo que você deseja exibir -->
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

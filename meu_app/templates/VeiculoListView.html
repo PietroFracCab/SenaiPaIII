@@ -1,0 +1,13 @@
+{% extends "Template_base.html" %}
+{% block content %}
+<h2>Lista de Veículos</h2>
+    {% if not Veiculo_list %}
+        <p>Nenhum veículo encontrado.</p>
+    {% else %}
+        <ul>
+            {% for Veiculo in Veiculo_list %}
+            <p>{{ Veiculo.nome }}</p>  <!-- Substitua 'nome' pelo campo que você deseja exibir -->
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
