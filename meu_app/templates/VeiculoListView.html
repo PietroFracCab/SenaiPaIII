@@ -1,13 +1,46 @@
-{% extends "Template_base.html" %}
+{% extends 'Template_base.html' %}
+
 {% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
 <h2>Lista de Veículos</h2>
-    {% if not Veiculo_list %}
-        <p>Nenhum veículo encontrado.</p>
-    {% else %}
-        <ul>
-            {% for Veiculo in Veiculo_list %}
-            <p>{{ Veiculo.nome }}</p>  <!-- Substitua 'nome' pelo campo que você deseja exibir -->
+{% if not Veiculo_list %}
+    <p>Nenhum veículo encontrado.</p>
+{% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data de Aquisição</th>
+                <th>Custo de Aquisição</th>
+                <th>Vida Útil Restante</th>
+                <th>Depreciação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for veiculo in Veiculo_list %}
+            <tr>
+                <td>{{ veiculo.nome }}</td>
+                <td>{{ veiculo.data_aquisicao|date:"d/m/Y" }}</td>
+                <td>{{ veiculo.custo_aquisicao }}</td>
+                <td>{{ veiculo.calcular_vida_util_restante }} anos</td>
+                <td>{{ veiculo.calcular_valor_atual }}</td>
+            </tr>
             {% endfor %}
-        </ul>
-    {% endif %}
+        </tbody>
+    </table>
+{% endif %}
 {% endblock %}

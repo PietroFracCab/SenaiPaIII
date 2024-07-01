@@ -1,13 +1,36 @@
-{% extends "Template_base.html" %}
+{% extends 'Template_base.html' %}
+
 {% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
 <h2>Lista de Máquinas</h2>
-    {% if not Maquina_list %}
-        <p>Nenhuma máquina encontrada.</p>
-    {% else %}
-        <ul>
-            {% for Maquina in Maquina_list %}
-            <p>{{ Maquina.nome }}</p>  <!-- Substitua 'nome' pelo campo que você deseja exibir -->
-            {% endfor %}
-        </ul>
-    {% endif %}
+{% if not Maquina_list %}
+    <p>Nenhuma máquina encontrada.</p>
+{% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data de Aquisição</th>
+                <th>Custo de Aquisição</th>
+                <th>Vida Útil Restante</th>
+                <th>Depreciação</th>
+            </tr>
+        </thead>
+        <!-- Corpo da tabela com dados das máquinas -->
+    </table>
+{% endif %}
 {% endblock %}

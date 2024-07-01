@@ -69,10 +69,21 @@ class EdificioListView(ListView):
     template_name = 'EdificioListView.html'
     context_object_name = 'Edificio_list'
 
+
 class VeiculoListView(ListView):
     model = Veiculo
     template_name = 'VeiculoListView.html'
     context_object_name = 'Veiculo_list'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Adicione os veículos ao contexto
+        veiculos = Veiculo.objects.all()
+        # Calcule o valor atual para cada veículo e armazene em um dicionário
+        veiculos_valores_atuais = {veiculo.id: veiculo.calcular_valor_atual() for veiculo in veiculos}
+        # Adicione o dicionário ao contexto
+        context['veiculos_valores_atuais'] = veiculos_valores_atuais
+        return context
 
 class MaquinaListView(ListView):
     model = Maquina
