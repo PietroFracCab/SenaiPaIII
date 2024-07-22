@@ -28,6 +28,7 @@
 				<th>Custo de Aquisição</th>
 				<th>Vida Útil Restante</th>
 				<th>Depreciação</th>
+				<th>Ações</th> <!-- Cabeçalho para as ações -->
 			</tr>
 		</thead>
 		<tbody>
@@ -38,6 +39,10 @@
 				<td>{{ equipamento.custo_aquisicao_formatado }}</td>
 				<td>{{ equipamento.calcular_vida_util_restante }} anos</td>
 				<td>{{ equipamento.calcular_valor_atual }}</td>
+				<td>
+                    <a href="{% url 'equipamento-update' equipamento.pk %}">Alterar</a> |
+                    <a href="{% url 'equipamento-delete' equipamento.pk %}" onclick="return confirm('Tem certeza que deseja excluir este equipamento?');">Excluir</a>
+				</td>
 			</tr>
 			{% endfor %}
 		</tbody>

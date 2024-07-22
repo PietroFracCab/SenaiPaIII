@@ -28,6 +28,7 @@
                 <th>Custo de Aquisição</th>
                 <th>Vida Útil Restante</th>
                 <th>Depreciação</th>
+                <th>Ações</th> <!-- Cabeçalho para as ações -->
             </tr>
         </thead>
         <tbody>
@@ -38,6 +39,10 @@
                 <td>{{ veiculo.custo_aquisicao_formatado }}</td>
                 <td>{{ veiculo.calcular_vida_util_restante }} anos</td>
                 <td>{{ veiculo.calcular_valor_atual }}</td>
+                <td>
+                    <a href="{% url 'veiculo-update' veiculo.pk %}">Alterar</a> |
+                    <a href="{% url 'veiculo-delete' veiculo.pk %}" onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
+				</td>	
             </tr>
             {% endfor %}
         </tbody>

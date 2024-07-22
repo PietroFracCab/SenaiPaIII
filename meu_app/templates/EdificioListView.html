@@ -24,11 +24,12 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Data de Construção</th>
-                <th>Custo de Construção</th>
+                <th>Data de Aquisição</th>
+                <th>Custo de Aquisição</th>
                 <th>Vida Útil Restante</th>
                 <th>Depreciação</th>
                 <th>Valor Atual</th>
+                <th>Ações</th> <!-- Cabeçalho para as ações -->
             </tr>
         </thead>
         <tbody>
@@ -40,6 +41,10 @@
                 <td>{{ edificio.calcular_vida_util_restante }} anos</td>
                 <td>{{ edificio.calcular_depreciacao }}</td>
                 <td>{{ veiculos_valores_atuais.edificio.id }}</td>
+                <td>
+                    <a href="{% url 'edificio-update' edificio.pk %}">Alterar</a> |
+                    <a href="{% url 'edificio-delete' edificio.pk %}" onclick="return confirm('Tem certeza que deseja excluir este edifício?');">Excluir</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
