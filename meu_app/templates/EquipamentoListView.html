@@ -2,35 +2,45 @@
 
 {% block content %}
 <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	th, td {
+		border: 1px solid #ccc;
+		padding: 8px;
+		text-align: left;
+	}
+	th {
+		background-color: #f2f2f2;
+	}
 </style>
 
 <h2>Lista de Equipamentos</h2>
 {% if not Equipamento_list %}
-    <p>Nenhum equipamento encontrado.</p>
+	<p>Nenhum equipamento encontrado.</p>
 {% else %}
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Data de Aquisição</th>
-                <th>Custo de Aquisição</th>
-                <th>Vida Útil Restante</th>
-                <th>Depreciação</th>
-            </tr>
-        </thead>
-        <!-- Corpo da tabela com dados dos equipamentos -->
-    </table>
+	<table>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Data de Aquisição</th>
+				<th>Custo de Aquisição</th>
+				<th>Vida Útil Restante</th>
+				<th>Depreciação</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for equipamento in Equipamento_list %}
+			<tr>
+				<td>{{ equipamento.nome }}</td>
+				<td>{{ equipamento.data_aquisicao|date:"d/m/Y" }}</td>
+				<td>{{ equipamento.custo_aquisicao_formatado }}</td>
+				<td>{{ equipamento.calcular_vida_util_restante }} anos</td>
+				<td>{{ equipamento.calcular_valor_atual }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endif %}
 {% endblock %}
