@@ -50,7 +50,7 @@ class EdificioUpdateView(UpdateView):
 
 class EdificioDeleteView(DeleteView):
     model = Edificio
-    template_name = 'edificio_confirm_delete.html'
+    template_name = 'EdificioDeleteView.html'
     success_url = reverse_lazy('edificio-list')
 
 class VeiculoListView(ListView):
@@ -62,12 +62,12 @@ class VeiculoUpdateView(UpdateView):
     model = Veiculo
     form_class = VeiculoForm
     template_name = 'VeiculoUpdateView.html'
-    success_url = reverse_lazy('Veiculo-list')
+    success_url = reverse_lazy('veiculo-list')
 
 class VeiculoDeleteView(DeleteView):
     model = Veiculo
-    template_name = 'Veiculo_confirm_delete.html'
-    success_url = reverse_lazy('Veiculo-list')
+    template_name = 'VeiculoDeleteView.html'
+    success_url = reverse_lazy('veiculo-list')
 
 class MaquinaListView(ListView):
     model = Maquina
@@ -78,12 +78,12 @@ class MaquinaUpdateView(UpdateView):
     model = Maquina
     form_class = MaquinaForm
     template_name = 'MaquinaUpdateView.html'
-    success_url = reverse_lazy('Maquina-list')
+    success_url = reverse_lazy('maquina-list')
 
 class MaquinaDeleteView(DeleteView):
     model = Maquina
-    template_name = 'Maquina_confirm_delete.html'
-    success_url = reverse_lazy('Maquina-list')
+    template_name = 'MaquinaDeleteView.html'
+    success_url = reverse_lazy('maquina-list')
 
 class EquipamentoListView(ListView):
     model = Equipamento
@@ -94,9 +94,9 @@ class EquipamentoUpdateView(UpdateView):
     model = Equipamento
     form_class = EquipamentoForm
     template_name = 'EquipamentoUpdateView.html'
-    success_url = reverse_lazy('Equipamento-list')
+    success_url = reverse_lazy('equipamento-list')
 
 class EquipamentoDeleteView(DeleteView):
     model = Equipamento
-    template_name = 'Equipamento_confirm_delete.html'
-    success_url = reverse_lazy('Equipamento-list')
+    template_name = 'EquipamentoDeleteViewe.html'
+    success_url = reverse_lazy('equipamento-list')

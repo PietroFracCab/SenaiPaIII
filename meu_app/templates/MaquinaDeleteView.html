@@ -1,0 +1,11 @@
+{% extends 'Template_base.html' %}
+
+{% block content %}
+  <h2>Tem certeza que deseja deletar "{{ maquina.nome }}"?</h2>
+  
+  <form method="post">
+	{% csrf_token %}
+	<button type="submit">Confirmar</button>
+	<a href="{% url 'maquina-list' %}">Cancelar</a>
+  </form>
+{% endblock %}
