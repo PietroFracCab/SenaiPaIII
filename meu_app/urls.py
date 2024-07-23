@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import adicionar_ativo, EdificioListView, EdificioUpdateView, EdificioDeleteView, EquipamentoListView, VeiculoListView, MaquinaListView, MaquinaUpdateView, MaquinaDeleteView, EquipamentoUpdateView, EquipamentoDeleteView, VeiculoUpdateView, VeiculoDeleteView
+from django.contrib.auth.decorators import login_required
+from .views import MyLoginView, adicionar_ativo, EdificioListView, EdificioUpdateView, EdificioDeleteView, EquipamentoListView, VeiculoListView, MaquinaListView, MaquinaUpdateView, MaquinaDeleteView, EquipamentoUpdateView, EquipamentoDeleteView, VeiculoUpdateView, VeiculoDeleteView
 
 urlpatterns = [
-    path('', adicionar_ativo, name='adicionar-ativo'),
+    path('', login_required(adicionar_ativo), name='adicionar-ativo'),
     path('edificios/', EdificioListView.as_view(), name='edificio-list'),
     path('edificio/update/<int:pk>/', EdificioUpdateView.as_view(), name='edificio-update'),
     path('edificio/delete/<int:pk>/', EdificioDeleteView.as_view(), name='edificio-delete'),
@@ -15,5 +16,7 @@ urlpatterns = [
     path('maquinas/', MaquinaListView.as_view(), name='maquina-list'),
     path('maquinas/update/<int:pk>/', MaquinaUpdateView.as_view(), name='maquina-update'),
     path('maquinas/delete/<int:pk>/', MaquinaDeleteView.as_view(), name='maquina-delete'),
+    #path('', MyLoginView.as_view(), name='login'),
+    path('login/', MyLoginView.as_view(), name='login'),
     
 ]

@@ -27,7 +27,6 @@
                 <th>Data de Aquisição</th>
                 <th>Custo de Aquisição</th>
                 <th>Vida Útil Restante</th>
-                <th>Depreciação</th>
                 <th>Valor Atual</th>
                 <th>Ações</th> <!-- Cabeçalho para as ações -->
             </tr>
@@ -36,11 +35,10 @@
             {% for edificio in Edificio_list %}
             <tr>
                 <td>{{ edificio.nome }}</td>
-                <td>{{ edificio.data_construcao|date:"d/m/Y" }}</td>
-                <td>{{ edificio.custo_construcao_formatado }}</td>
+                <td>{{ edificio.data_aquisicao|date:"d/m/Y" }}</td>
+                <td>{{ edificio.custo_aquisicao_formatado }}</td>
                 <td>{{ edificio.calcular_vida_util_restante }} anos</td>
-                <td>{{ edificio.calcular_depreciacao }}</td>
-                <td>{{ veiculos_valores_atuais.edificio.id }}</td>
+                <td>{{ edificio.calcular_valor_atual }}</td>
                 <td>
                     <a href="{% url 'edificio-update' edificio.pk %}">Alterar</a> |
                     <a href="{% url 'edificio-delete' edificio.pk %}" onclick="return confirm('Tem certeza que deseja excluir este edifício?');">Excluir</a>

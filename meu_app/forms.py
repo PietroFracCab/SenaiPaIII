@@ -1,6 +1,7 @@
 from django import forms
 from .models import Edificio, Veiculo, Maquina, Equipamento
 
+
 class AtivoForm(forms.Form):
     TIPO_ATIVO_CHOICES = [
         ('Edificio', 'Edifício'),
@@ -17,8 +18,7 @@ class AtivoForm(forms.Form):
     custo_aquisicao = forms.FloatField(label='Custo de Aquisição')
     data_aquisicao = forms.DateField(
         label='Data de Aquisição',
-        widget=forms.DateInput(format='%d/%m/%Y', attrs={'type': 'date'}),
-        input_formats=['%d/%m/%Y'],
+        widget=forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
         help_text='Formato: DD/MM/AAAA'
     )
 

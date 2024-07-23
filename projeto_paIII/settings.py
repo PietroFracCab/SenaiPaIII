@@ -107,6 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+LOGIN_REDIRECT_URL = 'adicionar-ativo'
+
+LOGIN_URL = 'login'
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

@@ -1,10 +1,19 @@
 
 from django.db import models
-from datetime import datetime, date
+from datetime import datetime
+from babel.numbers import format_currency
 import locale
 
-# Define o locale para Português Brasil
-locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
+def custo_aquisicao_formatado(self):
+    try:
+        # Tente definir um locale que suporte formatação de moeda
+        locale.setlocale(locale.LC_ALL, 'English_United States.1252')
+    except locale.Error:
+        # Se o locale especificado não estiver disponível, use um fallback
+        locale.setlocale(locale.LC_ALL, '')
+    
+    # Agora, a formatação de moeda deve funcionar
+    return locale.currency(self.custo_aquisicao, grouping=True)
 
 class Ativo(models.Model):
     codigo = models.IntegerField(default=0)
@@ -25,7 +34,7 @@ class Ativo(models.Model):
     def calcular_valor_atual(self):
         anos_uso = datetime.now().year - self.data_aquisicao.year
         valor_atual = self.custo_aquisicao * ((1 - self.depreciacao_anual / 100) ** anos_uso)
-        return locale.currency(valor_atual, grouping=True)
+        return format_currency(valor_atual, 'BRL', locale='pt_BR', currency_digits=True, format_type='standard')
 
     def calcular_vida_util_restante(self):
         ano_atual = datetime.now().year
@@ -34,7 +43,7 @@ class Ativo(models.Model):
         return vida_util_restante
 
     def custo_aquisicao_formatado(self):
-        return locale.currency(self.custo_aquisicao, grouping=True)
+        return format_currency(self.custo_aquisicao, 'BRL', locale='pt_BR', currency_digits=True, format_type='standard')
 
 class Maquina(Ativo):
     depreciacao_anual = models.FloatField(default=15.0)

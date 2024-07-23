@@ -1,3 +1,4 @@
+
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import AtivoForm, EdificioForm, VeiculoForm, MaquinaForm, EquipamentoForm
@@ -6,6 +7,30 @@ from datetime import date
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def create_user(request):
+    username = 'admin'
+    password = 'admin'
+    email = 'admin@admin.com'
+    # Verifica se o usuário já existe
+    if not User.objects.filter(username=username).exists():
+        # Cria um novo usuário com a senha criptografada
+        user = User.objects.create_user(username, email, password)
+        # Aqui você pode definir outros campos do usuário, se necessário
+        # user.first_name = 'Primeiro'
+        # user.last_name = 'Último'
+        user.save()
+        return HttpResponse("Usuário criado com sucesso!")
+    else:
+        return HttpResponse("Usuário já existe.")
+
+class MyLoginView(LoginView):
+    template_name = 'Login.html'
+    # Adicione sua lógica personalizada aqui
+
 
 def criar_ativo(form_data, AtivoClass): #função criada para refatorar condições IF de adicionar_ativo
     novo_ativo = AtivoClass(
